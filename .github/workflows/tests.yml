@@ -25,7 +25,7 @@ jobs:
       - name: Coverage report
         run: |
           pip install coverage
-          coverage run manage.py test
+          coverage run app/manage.py test
           coverage report
       - name: Django Testing lint
-        run: python manage.py test && flake8
+        run: python app/manage.py test && flake8
