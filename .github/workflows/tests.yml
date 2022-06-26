@@ -3,7 +3,7 @@ name: Djando tests and lint
 on:
   push:
     branches:
-      -main
+      - main
   pull_request:
     branches:
       - main
