@@ -22,10 +22,12 @@ jobs:
           python-version: 3.8
       - name: Install dependencies
         run: python -m pip install --upgrade pip && pip install -r requirements.txt
+      - name: Lint with flake8
+        run: flake8
       - name: Coverage report
         run: |
           pip install coverage
           coverage run app/manage.py test
           coverage report
       - name: Django Testing lint
-        run: python app/manage.py test && flake8
+        run: python app/manage.py test
