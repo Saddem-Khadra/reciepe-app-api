@@ -35,4 +35,4 @@ jobs:
           coverage report
       - name: Django Testing
         run: |
-          python ./app/manage.py test
+          python ./app/manage.py test core
