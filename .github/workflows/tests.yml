@@ -30,4 +30,4 @@ jobs:
           coverage run app/manage.py test
           coverage report
       - name: Django Testing lint
-        run: python app/manage.py test app/
+        run: python app/manage.py test
