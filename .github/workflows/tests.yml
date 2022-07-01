@@ -31,8 +31,8 @@ jobs:
       - name: Coverage report
         run: |
           pip install coverage
-          coverage run app/manage.py test
+          coverage run ./app/manage.py test
           coverage report
       - name: Django Testing
         run: |
-          python app/manage.py test
+          python ./app/manage.py test
