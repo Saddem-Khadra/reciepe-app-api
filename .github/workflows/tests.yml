@@ -19,8 +19,8 @@ jobs:
         image: postgres:14-alpine
         env:
           POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: github_actions
+          POSTGRES_PASSWORD: supersecretpassword
+          POSTGRES_DB: app
         ports:
           - 5432:5432
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
@@ -41,6 +41,11 @@ jobs:
           pip install flake8
           flake8
       - name: Coverage report
+        env:
+          DB_NAME: ${{ secrets.DB_NAME }}
+          DB_USER: ${{ secrets.DB_USER }}
+          DB_PASS: ${{ secrets.DB_PASS }}
+          DB_HOST: ${{ secrets.DB_HOST }}
         run: |
           pip install coverage
           coverage run ./app/manage.py test core
