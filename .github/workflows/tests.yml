@@ -35,7 +35,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       - name: Run migrations
-        run: python manage.py migrate
+        run: python ./app/manage.py migrate
       - name: Lint with flake8
         run: |
           pip install flake8
