@@ -41,22 +41,20 @@ jobs:
           DB_PASS: ${{ secrets.DB_PASS }}
           DB_HOST: ${{ secrets.DB_HOST }}
         run: python ./app/manage.py migrate
-      - name: Lint with flake8
-        run: |
-          pip install flake8
-          flake8
-      - name: Coverage report
-        env:
-          DB_NAME: ${{ secrets.DB_NAME }}
-          DB_USER: ${{ secrets.DB_USER }}
-          DB_PASS: ${{ secrets.DB_PASS }}
-          DB_HOST: ${{ secrets.DB_HOST }}
-        run: |
-          pip install coverage
-          coverage run ./app/manage.py test core
-          coverage report
+#      - name: Lint with flake8
+#        run: |
+#          pip install flake8
+#          flake8
+#      - name: Coverage report
 #        env:
-#          DATABASE_URL: 'postgres://postgres:postgres@localhost:${{ job.services.postgres.ports[5432] }}/postgres'
-      - name: Django Testing
-        run: |
-          python ./app/manage.py test core
+#          DB_NAME: ${{ secrets.DB_NAME }}
+#          DB_USER: ${{ secrets.DB_USER }}
+#          DB_PASS: ${{ secrets.DB_PASS }}
+#          DB_HOST: ${{ secrets.DB_HOST }}
+#        run: |
+#          pip install coverage
+#          coverage run ./app/manage.py test core
+#          coverage report
+#      - name: Django Testing
+#        run: |
+#          python ./app/manage.py test core
