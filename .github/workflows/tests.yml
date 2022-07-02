@@ -43,6 +43,8 @@ jobs:
           pip install coverage
           coverage run ./app/manage.py test core
           coverage report
+        env:
+          DATABASE_URL: 'postgres://postgres:postgres@localhost:${{ job.services.postgres.ports[5432] }}/postgres'
       - name: Django Testing
         run: |
           python ./app/manage.py test core
