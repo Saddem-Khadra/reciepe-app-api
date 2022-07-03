@@ -1,6 +1,7 @@
-version: "3"
+version: "3.9"
 services:
   app:
+    container_name: app
     build:
       context: .
     ports:
@@ -8,7 +9,7 @@ services:
     volumes:
       - ./app:/app
     command: >
-      sh -C "python manage.py wait_for_db &&
+      sh -c "python manage.py wait_for_db &&
              python manage.py makemigrations &&
              python manage.py migrate &&
              python manage.py runserver 0.0.0.0:8000"
@@ -17,10 +18,20 @@ services:
       - DB_NAME=app
       - DB_USER=postgres
       - DB_PASS=supersecretpassword
+#    restart: on-failure
+#    links:
+#      - db
     depends_on:
-      - db
+      db:
+        condition: service_healthy
   db:
+    container_name: postgres
     image: postgres:14-alpine
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
     environment:
       - POSTGRES_DB=app
       - POSTGRES_USER=postgres
