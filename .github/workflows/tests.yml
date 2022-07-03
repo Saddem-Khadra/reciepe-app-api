@@ -62,12 +62,12 @@ jobs:
         run: |
           coverage run manage.py test core
           coverage report
-      - name: Django Testing
-        working-directory: ./app
-        env:
-          DB_NAME: ${{ secrets.DB_NAME }}
-          DB_USER: ${{ secrets.DB_USER }}
-          DB_PASS: ${{ secrets.DB_PASS }}
-          DB_HOST: ${{ secrets.DB_HOST }}
-        run: |
-          python manage.py test core
+#      - name: Django Testing
+#        working-directory: ./app
+#        env:
+#          DB_NAME: ${{ secrets.DB_NAME }}
+#          DB_USER: ${{ secrets.DB_USER }}
+#          DB_PASS: ${{ secrets.DB_PASS }}
+#          DB_HOST: ${{ secrets.DB_HOST }}
+#        run: |
+#          python manage.py test core
