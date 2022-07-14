@@ -10,3 +10,6 @@ app_name = 'recipe'
 urlpatterns = [
     path('', include(router.urls))
 ]
+#
+# for url in router.urls:
+#     print(url, '\n')

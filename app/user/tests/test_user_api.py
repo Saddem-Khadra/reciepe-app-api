@@ -4,12 +4,14 @@ from django.urls import reverse
 from rest_framework.test import APIClient
 from rest_framework import status
 
+from core.models import User
+
 CREATE_USER_URL = reverse('user:create')
 TOKEN_URL = reverse('user:token')
 ME_URL = reverse('user:me')
 
 
-def create_user(**kwargs):
+def create_user(**kwargs: dict) -> User:
     return get_user_model().objects.create_user(**kwargs)
 
 
@@ -69,7 +71,12 @@ class PublicUserApiTests(TestCase):
 
     def test_create_token_invalid_credentials(self) -> None:
         """Test that token is not created if invalid credentials are given"""
-        create_user(email='sad@sad.com', password='testpass', name='SADD')
+        payload = {
+            'email': 'sad@sad.com',
+            'password': 'testpass',
+            'name': 'SADD'
+        }
+        create_user(**payload)
         payload = {
             'email': 'sad@sad.com',
             'password': 'saddem123',
