@@ -60,7 +60,7 @@ jobs:
           DB_PASS: ${{ secrets.DB_PASS }}
           DB_HOST: ${{ secrets.DB_HOST }}
         run: |
-          coverage run manage.py test && coverage report --fail-under=75 && coverage xml
+          mkdir -p /vol/web/media && mkdir -p /vol/web/static && coverage run manage.py test && coverage report --fail-under=75 && coverage xml
       - name: Report coverage to codecov
         env:
           DB_NAME: ${{ secrets.DB_NAME }}
