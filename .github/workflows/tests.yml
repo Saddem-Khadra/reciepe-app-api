@@ -60,7 +60,7 @@ jobs:
           DB_PASS: ${{ secrets.DB_PASS }}
           DB_HOST: ${{ secrets.DB_HOST }}
         run: |
-          sudo mkdir -p /vol/web/media && sudo mkdir -p /vol/web/static && sudo chmod -R 755 /vol/web && coverage run manage.py test && coverage report --fail-under=75 && coverage xml
+          sudo mkdir -p /vol/web/media && sudo mkdir -p /vol/web/static && sudo adduser -D saddem && sudo chown -R saddem:saddem /vol/ && sudo chmod -R 755 /vol/web && coverage run manage.py test && coverage report --fail-under=75 && coverage xml
       - name: Report coverage to codecov
         env:
           DB_NAME: ${{ secrets.DB_NAME }}
