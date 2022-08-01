@@ -62,7 +62,7 @@ jobs:
         run: >
           sudo mkdir -p /vol/web/media && 
           sudo mkdir -p /vol/web/static && 
-          sudo chmod -R 755 /vol/web && 
+          sudo chown -R 755 /vol/web && 
           coverage run manage.py test && 
           coverage report --fail-under=75 && 
           coverage xml
