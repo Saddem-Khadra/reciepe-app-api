@@ -62,7 +62,8 @@ jobs:
         run: >
           sudo mkdir -p /vol/web/media/uploads/recipe && 
           sudo mkdir -p /vol/web/static && 
-          sudo chmod +x /vol/web && 
+          sudo chmod -R 755 /vol/web && 
+          git update-index --chmod=+x /vol/web &&
           coverage run manage.py test && 
           coverage report --fail-under=75 && 
           coverage xml
